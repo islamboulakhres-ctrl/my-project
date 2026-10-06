@@ -1,0 +1,582 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * FISCO — design system v2
+ * Art direction: porcelain light, cool graphite ink, single ember accent,
+ * iridescent ambient light field, layered glass. Thin, precise, expensive.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 10px);
+  --radius-md: calc(var(--radius) - 6px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --radius-4xl: calc(var(--radius) + 34px);
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-iris: var(--iris);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --shadow-soft: 0 1px 2px oklch(0.28 0.02 265 / 0.06), 0 8px 20px -14px oklch(0.28 0.02 265 / 0.22);
+  --shadow-card: 0 1px 1px oklch(0.28 0.02 265 / 0.04), 0 20px 44px -28px oklch(0.28 0.02 265 / 0.3);
+  --shadow-float: 0 26px 64px -24px oklch(0.2 0.02 265 / 0.42);
+  --shadow-accent: 0 14px 34px -14px oklch(0.63 0.17 42 / 0.5);
+}
+
+:root {
+  --radius: 1.35rem;
+
+  /* porcelain */
+  --background: oklch(0.955 0.005 275);
+  --foreground: oklch(0.215 0.014 268);
+
+  --card: oklch(0.995 0.002 275);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.995 0.002 275);
+  --popover-foreground: var(--foreground);
+
+  /* graphite ink */
+  --ink: oklch(0.215 0.014 268);
+  --ink-soft: oklch(0.29 0.016 268);
+  --ink-foreground: oklch(0.972 0.004 275);
+
+  /* ember accent */
+  --primary: oklch(0.645 0.168 40);
+  --primary-foreground: oklch(0.99 0.005 60);
+
+  --secondary: oklch(0.925 0.006 272);
+  --secondary-foreground: oklch(0.28 0.014 268);
+  --muted: oklch(0.935 0.005 272);
+  --muted-foreground: oklch(0.535 0.012 268);
+  --accent: oklch(0.645 0.168 40);
+  --accent-foreground: oklch(0.99 0.005 60);
+  --destructive: oklch(0.58 0.2 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --positive: oklch(0.62 0.13 158);
+  --negative: oklch(0.6 0.19 25);
+  --iris: oklch(0.62 0.13 292);
+
+  --border: oklch(0.885 0.006 272 / 0.85);
+  --input: oklch(0.9 0.006 272);
+  --ring: oklch(0.645 0.168 40 / 0.4);
+
+  --chart-1: oklch(0.645 0.168 40);
+  --chart-2: oklch(0.29 0.016 268);
+  --chart-3: oklch(0.62 0.13 158);
+  --chart-4: oklch(0.62 0.13 292);
+  --chart-5: oklch(0.74 0.11 82);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.035em;
+  }
+}
+
+/* ---------- surfaces ---------- */
+
+@utility glass {
+  background: linear-gradient(
+    150deg,
+    oklch(1 0 0 / 0.8),
+    oklch(1 0 0 / 0.58) 55%,
+    oklch(0.97 0.006 275 / 0.66)
+  );
+  backdrop-filter: blur(9px) saturate(125%);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.7),
+    var(--shadow-card);
+}
+
+@utility glass-ink {
+  background: linear-gradient(
+    150deg,
+    color-mix(in oklab, var(--ink) 84%, transparent),
+    color-mix(in oklab, var(--ink) 70%, transparent)
+  );
+  backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  color: var(--ink-foreground);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.12),
+    var(--shadow-float);
+}
+
+
+@utility surface-ink {
+  background:
+    radial-gradient(120% 90% at 12% 0%, oklch(0.33 0.03 268) 0%, transparent 62%),
+    var(--ink);
+  color: var(--ink-foreground);
+}
+
+@utility surface-card {
+  background: var(--card);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.9),
+    var(--shadow-card);
+}
+
+/* thin key line used to separate bento blocks */
+@utility hairline {
+  border-color: color-mix(in oklab, var(--foreground) 9%, transparent);
+}
+
+@utility num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+}
+
+@utility serif {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+@utility press {
+  transition:
+    transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+  &:active {
+    transform: scale(0.965);
+  }
+}
+
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    border-radius: inherit;
+    background-image: radial-gradient(oklch(1 0 0 / 0.05) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------- ambient / idle motion ---------- */
+
+@utility drift-a {
+  animation: fisco-drift-a 40s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@utility drift-b {
+  animation: fisco-drift-b 52s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@utility breathe {
+  animation: fisco-breathe 5.5s ease-in-out infinite;
+}
+
+@utility sheen {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      transparent 42%,
+      oklch(1 0 0 / 0.14) 50%,
+      transparent 58%
+    );
+    animation: fisco-sheen 7s ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
+@keyframes fisco-drift-a {
+  0% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(6%, 4%, 0) scale(1.12);
+  }
+}
+@keyframes fisco-drift-b {
+  0% {
+    transform: translate3d(4%, 3%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-5%, -4%, 0) scale(1);
+  }
+}
+@keyframes fisco-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+@keyframes fisco-sheen {
+  0%,
+  100% {
+    transform: translateX(-40%);
+  }
+  50% {
+    transform: translateX(40%);
+  }
+}
+
+/* ---------- maplibre chrome ---------- */
+
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-bottom-right {
+  font-size: 9px;
+  opacity: 0.4;
+}
+.maplibregl-ctrl-bottom-left {
+  display: none;
+}
+.maplibregl-popup-content {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.maplibregl-canvas:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- map markers: anchor pins ---------- */
+
+.pin {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px) scale(0.8);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.2, 1.2, 0.32, 1);
+  filter: drop-shadow(0 12px 18px oklch(0.24 0.02 265 / 0.28));
+}
+.pin.is-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.pin.is-leaving {
+  opacity: 0;
+  transform: translateY(6px) scale(0.75);
+}
+
+/* the anchor plate */
+.pin__plate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  background: oklch(1 0 0 / 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid oklch(1 0 0 / 0.85);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.9);
+  transition:
+    transform 0.4s cubic-bezier(0.2, 1.2, 0.32, 1),
+    background 0.35s ease,
+    padding 0.35s ease;
+}
+/* the anchor stem + point, so the pin visually pins to the ground */
+.pin__stem {
+  position: absolute;
+  left: 50%;
+  bottom: -13px;
+  width: 2px;
+  height: 13px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--ink) 65%, transparent),
+    transparent
+  );
+}
+.pin__tip {
+  position: absolute;
+  left: 50%;
+  bottom: -17px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: var(--ink);
+  box-shadow: 0 0 0 4px oklch(1 0 0 / 0.55);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.35s ease;
+}
+.pin__avatar {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  overflow: hidden;
+  flex: none;
+  background: var(--secondary);
+}
+.pin__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pin__dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--positive);
+  border: 2px solid oklch(1 0 0);
+}
+.pin__meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.12;
+  max-width: 116px;
+}
+.pin__meta b {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pin__meta em {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted-foreground);
+}
+.pin__halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 0 oklch(0.645 0.168 40 / 0.5);
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pin.is-nearest .pin__plate {
+  background: var(--primary);
+}
+.pin.is-nearest .pin__meta b {
+  color: var(--primary-foreground);
+}
+.pin.is-nearest .pin__meta em {
+  color: oklch(1 0 0 / 0.75);
+}
+.pin.is-nearest .pin__tip {
+  background: var(--primary);
+}
+
+.pin.is-active {
+  z-index: 6;
+}
+.pin.is-active .pin__plate {
+  transform: translateY(-10px) scale(1.08);
+  background: var(--ink);
+}
+.pin.is-active .pin__meta b {
+  color: var(--ink-foreground);
+}
+.pin.is-active .pin__meta em {
+  color: color-mix(in oklab, var(--primary) 85%, white);
+}
+.pin.is-active .pin__halo {
+  box-shadow: 0 0 0 18px oklch(0.645 0.168 40 / 0.16);
+}
+.pin.is-active .pin__stem {
+  height: 22px;
+  bottom: -22px;
+}
+.pin.is-active .pin__tip {
+  bottom: -26px;
+  background: var(--primary);
+  box-shadow: 0 0 0 6px oklch(0.645 0.168 40 / 0.2);
+}
+
+/* user location puck */
+.puck {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+.puck__core {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  border: 3px solid oklch(1 0 0);
+  box-shadow: 0 4px 12px -2px oklch(0.24 0.02 265 / 0.6);
+}
+.puck__pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  background: oklch(0.645 0.168 40 / 0.26);
+  animation: puck-pulse 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes puck-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* ---------- skeleton shimmer ---------- */
+
+.shimmer {
+  background:
+    linear-gradient(
+      100deg,
+      oklch(0.9 0.006 272 / 0.55) 30%,
+      oklch(0.97 0.004 272 / 0.9) 50%,
+      oklch(0.9 0.006 272 / 0.55) 70%
+    )
+    0 0 / 220% 100%;
+  animation: fisco-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes fisco-shimmer {
+  0% {
+    background-position: 140% 0;
+  }
+  100% {
+    background-position: -40% 0;
+  }
+}
+
+/* ---------- calm mode: user-chosen reduced motion ---------- */
+
+html[data-calm="true"] .drift-a,
+html[data-calm="true"] .drift-b,
+html[data-calm="true"] .breathe,
+html[data-calm="true"] .shimmer {
+  animation: none !important;
+}
+html[data-calm="true"] .sheen::before {
+  display: none !important;
+}
+html[data-calm="true"] .glass,
+html[data-calm="true"] .glass-ink {
+  backdrop-filter: blur(6px) saturate(120%);
+}
+html[data-calm="true"] * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.09s !important;
+  scroll-behavior: auto !important;
+}
+
+/* rows that stay cheap to scroll past */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 48px;
+}
+
+
+/* ---------- low-power tuning ---------- */
+/* Phones/tablets pay the most for stacked backdrop filters and idle motion. */
+@media (hover: none) and (pointer: coarse) {
+  .glass {
+    backdrop-filter: blur(7px) saturate(115%);
+  }
+  .glass-ink {
+    backdrop-filter: blur(6px) saturate(115%);
+  }
+  .sheen::before {
+    animation: none;
+    opacity: 0;
+  }
+}
